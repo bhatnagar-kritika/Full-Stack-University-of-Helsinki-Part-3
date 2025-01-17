@@ -5,6 +5,7 @@ const cors = require('cors')
 const app = express()
 
 app.use(express.json())
+app.use(express.static('dist'))
 app.use(morgan('tiny'))
 app.use(cors())
 
@@ -43,6 +44,11 @@ function assignPost (req, res, next) {
     next()
   
 }
+
+app.get('/', (request,response) => {
+  response.send('Got to /api/persons for phonebook')
+})
+
 
 app.get('/info', (request,response) => {
     const requestTime= new Date()
